@@ -1,3 +1,4 @@
 flask
-pyjwt
 flask-cors
+pyjwt
+gunicorn
