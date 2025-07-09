@@ -12,16 +12,20 @@ REST_KEY = "rk_DM3_7yAfHUziGWYKx7upJcxZWRTKX_aM"
 def generate_link():
     data = request.get_json()
     session_id = data.get("sessionId")
+    new_tab = data.get("newTab")
 
     if not session_id:
         return jsonify({"error": "Missing sessionId"}), 400
+
+    if not new_tab:
+        return jsonify({"error": "Missing newTab"}), 400
 
     payload = {
         "space_id": "930",
         "name": "Customer",
         "email": "Customer@example.com",
         "can_host": True,
-        "urls": ["https://demo.surfly.com/company/Primaholding/contract_demo.pdf"],
+        "urls": [new_tab],
         "exp": datetime.datetime.utcnow() + datetime.timedelta(days=7)
     }
 
