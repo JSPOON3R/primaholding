@@ -10,7 +10,8 @@ CORS(app)  # Enable CORS for all domains
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
-REST_KEY = "rk_JNGntDbpA_jVrCKD1Zwu1ro8amZYE_fU"
+REST_KEY_N = "rk_ajE69pkUwIkGLVGDN9UFvLY9m5_4p656"
+REST_KEY_J = "rk_JNGntDbpA_jVrCKD1Zwu1ro8amZYE_fU"
 
 @app.route('/generate-link', methods=['POST'])
 def generate_link():
@@ -43,11 +44,11 @@ def generate_link():
     }
 
     if user == "Nodir":
-    REST_KEY = REST_KEY_N
-        elif user == "John":
-    REST_KEY = REST_KEY_J
-        else:
-    raise ValueError("Unknown user")
+        REST_KEY = REST_KEY_N
+    elif user == "John":
+        REST_KEY = REST_KEY_J
+    else:
+        return jsonify({"error": f"Unknown user: {user}"}), 400
 
     logger.info("JWT payload: %s", payload)
     logger.info("User: %s", user)
