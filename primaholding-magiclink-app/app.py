@@ -16,9 +16,9 @@ REST_KEY = "rk_JNGntDbpA_jVrCKD1Zwu1ro8amZYE_fU"
 def generate_link():
     data = request.get_json()
     session_id = data.get("sessionId")
-    new_tab = data.get("newTab") #formatted as a list
-    space_id =str(data.get("spaceId")) #formatted as string
-    space_url = str(data.get("spaceUrl")) #formatted as string
+    new_tab = data.get("newTab") 
+    space_id = data.get("spaceId") 
+    space_url = data.get("spaceUrl") 
 
     if not session_id:
         return jsonify({"error": "Missing sessionId"}), 400
@@ -33,11 +33,11 @@ def generate_link():
         return jsonify({"error": "Missing Space Url"}), 400
 
     payload = {
-        "space_id": [space_id],
+        "space_id": space_id,
         "name": "Customer",
         "email": "Customer@example.com",
         "can_host": True,
-        "urls": [new_tab],
+        "urls": new_tab, #formatted as a list []
         "exp": datetime.datetime.utcnow() + datetime.timedelta(days=7)
     }
 
