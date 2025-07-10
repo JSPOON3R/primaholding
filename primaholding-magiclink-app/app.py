@@ -19,6 +19,7 @@ def generate_link():
     new_tab = data.get("newTab") 
     space_id = data.get("spaceId") 
     space_url = data.get("spaceUrl") 
+    user = data.get("user")
 
     if not session_id:
         return jsonify({"error": "Missing sessionId"}), 400
@@ -41,7 +42,15 @@ def generate_link():
         "exp": datetime.datetime.utcnow() + datetime.timedelta(days=7)
     }
 
+    if user == "Nodir":
+    REST_KEY = REST_KEY_N
+        elif user == "John":
+    REST_KEY = REST_KEY_J
+        else:
+    raise ValueError("Unknown user")
+
     logger.info("JWT payload: %s", payload)
+    logger.info("User: %s", user)
     logger.info("Session ID: %s", session_id)
 
     magic_link = jwt.encode(payload, REST_KEY, algorithm="HS256")
