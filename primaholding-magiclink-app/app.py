@@ -1,12 +1,17 @@
 from flask import Flask, request, jsonify
 import jwt
 import datetime
+import logging
 from flask_cors import CORS  # To allow frontend requests
 
 app = Flask(__name__)
 CORS(app)  # Enable CORS for all domains
 
 REST_KEY = "rk_DM3_7yAfHUziGWYKx7upJcxZWRTKX_aM"
+
+safe_payload = dict(data)
+safe_payload.pop("sensitiveField", None)
+logger.info(f"Payload (safe): {safe_payload}")
 
 @app.route('/generate-link', methods=['POST'])
 def generate_link():
