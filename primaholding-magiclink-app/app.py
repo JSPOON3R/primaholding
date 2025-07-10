@@ -37,7 +37,7 @@ def generate_link():
         "name": "Customer",
         "email": "Customer@example.com",
         "can_host": True,
-        "urls": new_tab, #formatted as a list []
+        "urls": [new_tab], #formatted as a list []
         "exp": datetime.datetime.utcnow() + datetime.timedelta(days=7)
     }
 
