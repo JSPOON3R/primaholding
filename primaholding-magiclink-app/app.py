@@ -7,15 +7,15 @@ from flask_cors import CORS  # To allow frontend requests
 app = Flask(__name__)
 CORS(app)  # Enable CORS for all domains
 
-REST_KEY = "rk_DM3_7yAfHUziGWYKx7upJcxZWRTKX_aM"
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger(__name__)
 
-safe_payload = dict(data)
-safe_payload.pop("sensitiveField", None)
-logger.info(f"Payload (safe): {safe_payload}")
+REST_KEY = "rk_DM3_7yAfHUziGWYKx7upJcxZWRTKX_aM"
 
 @app.route('/generate-link', methods=['POST'])
 def generate_link():
     data = request.get_json()
+    logger.info("Incoming payload: %s", data)
     session_id = data.get("sessionId")
     new_tab = data.get("newTab")
     space_id = data.get("spaceId")
