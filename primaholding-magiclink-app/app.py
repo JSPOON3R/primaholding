@@ -15,7 +15,6 @@ REST_KEY = "rk_JNGntDbpA_jVrCKD1Zwu1ro8amZYE_fU"
 @app.route('/generate-link', methods=['POST'])
 def generate_link():
     data = request.get_json()
-    logger.info("Incoming payload: %s", data)
     session_id = data.get("sessionId")
     new_tab = data.get("newTab")
     space_id = data.get("spaceId")
@@ -42,8 +41,11 @@ def generate_link():
         "exp": datetime.datetime.utcnow() + datetime.timedelta(days=7)
     }
 
+    logger.info("JWT payload: %s", payload)
+
     magic_link = jwt.encode(payload, REST_KEY, algorithm="HS256")
     magic_url = f"{space_url}?magic_link={magic_link}" 
     #&session_id={session_id}
 
+    logger.info("Magic URL: %s", magic_url)
     return jsonify({"message": "Magic Link", "link": magic_url})
