@@ -45,7 +45,7 @@ def generate_link():
     logger.info("Session ID: %s", session_id)
 
     magic_link = jwt.encode(payload, REST_KEY, algorithm="HS256")
-    magic_url = f"{space_url}?magic_link={magic_link}"&session_id={session_id}
+    magic_url = f"{space_url}?magic_link={magic_link}&session_id={session_id}"
 
     logger.info("Magic URL: %s", magic_url)
     return jsonify({"message": "Magic Link", "link": magic_url})
