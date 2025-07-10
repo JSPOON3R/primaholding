@@ -10,7 +10,7 @@ CORS(app)  # Enable CORS for all domains
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
-REST_KEY = "rk_DM3_7yAfHUziGWYKx7upJcxZWRTKX_aM"
+REST_KEY = "rk_JNGntDbpA_jVrCKD1Zwu1ro8amZYE_fU"
 
 @app.route('/generate-link', methods=['POST'])
 def generate_link():
