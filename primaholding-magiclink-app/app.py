@@ -16,9 +16,9 @@ REST_KEY = "rk_JNGntDbpA_jVrCKD1Zwu1ro8amZYE_fU"
 def generate_link():
     data = request.get_json()
     session_id = data.get("sessionId")
-    new_tab = data.get("newTab")
-    space_id = data.get("spaceId")
-    space_url = data.get("spaceUrl")
+    new_tab = data.get("newTab") #formatted as a list
+    space_id =str(data.get("spaceId")) #formatted as string
+    space_url = str(data.get("spaceUrl")) #formatted as string
 
     if not session_id:
         return jsonify({"error": "Missing sessionId"}), 400
